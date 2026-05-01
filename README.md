@@ -2,32 +2,32 @@
 
 # Smart To-Do App
 
-## Författare
+## Authors
 Sandra & Eliza
 
-## Beskrivning
-Detta projekt är en smart to-do webbapplikation som hjälper användare att organisera och prioritera sina uppgifter.
+## Description
+This project is a smart to-do web application designed to help users organize and prioritize their tasks.
 
-Användaren kan skapa uppgifter genom att ange titel, beskrivning, deadline och prioritet. Alla uppgifter visas i en lista där de även kan markeras som klara.
+Users can create tasks by entering a title, description, deadline, and priority. All tasks are displayed in a list where they can also be marked as completed.
 
-Utöver grundläggande funktioner innehåller applikationen smarta funktioner som hjälper användaren att planera sitt arbete. Uppgifter sorteras automatiskt baserat på deadline och prioritet, och systemet föreslår vilka uppgifter som bör göras först.
+In addition to basic functionality, the application includes smart features that support planning and productivity. Tasks are automatically sorted based on deadline and priority, and the system suggests which tasks should be completed first.
 
-Applikationen innehåller även en sektion kallad **“Detta borde du göra idag”**, där de viktigaste uppgifterna lyfts fram. En enkel veckovy visar kommande uppgifter.
+The application also includes a section called **"This is what you should do today"**, where the most important tasks are highlighted. A simple weekly view provides an overview of upcoming tasks.
 
-En AI-baserad funktion kommer att användas för att generera en enkel dags- eller veckoplan baserat på användarens uppgifter.
+An AI-based feature is used to generate a simple daily or weekly plan based on the user’s tasks.
 
-## Funktioner
-- Skapa, redigera och ta bort uppgifter  
-- Ange deadline och prioritet  
-- Markera uppgifter som klara  
-- Visa alla uppgifter i en lista  
-- Automatisk sortering baserat på deadline och prioritet  
-- Visa “Detta borde du göra idag”  
-- Visa veckovy över uppgifter  
-- AI-genererade förslag för planering  
+## Features
+- Create, edit, and delete tasks  
+- Set deadlines and priorities  
+- Mark tasks as completed  
+- View all tasks in a list  
+- Automatic sorting based on deadline and priority  
+- "This is what you should do today" section  
+- Weekly task overview  
+- AI-generated planning suggestions  
 
-## Teknisk lösning
-- Frontend: React med TypeScript  
-- Backend: Python  
-- Databas: SQLite  
-- API: LLM API för AI-funktionalitet  
+## Tech Stack
+- **Frontend:** React with TypeScript  
+- **Backend:** Python  
+- **Database:** SQLite  
+- **API:** LLM API for AI functionality  
