@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from models import TaskCreate, TaskUpdate
 import database
 
 app = FastAPI() # creates app
@@ -15,3 +16,33 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"status": "Backend igång!"}
+
+# GET /tasks
+# Returns a list of all tasks from the database
+@app.get("/tasks")
+def get_tasks():
+    return database.get_all_tasks()
+
+# POST /tasks
+# Creates a new task. Frontend sends title, description, deadline, priority.
+@app.post("/tasks", status_code=201)
+def create_task(task: TaskCreate):
+    return database.create_task(task.model_dump())
+ 
+ 
+# PUT /tasks/{id}
+# Updates an existing task. Also used for marking a task as complete.
+@app.put("/tasks/{task_id}")
+def update_task(task_id: int, task: TaskUpdate):
+    updated = database.update_task(task_id, task.model_dump(exclude_none=True))
+    if not updated:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return updated
+ 
+ 
+# DELETE /tasks/{id}
+# Deletes a task permanently.
+@app.delete("/tasks/{task_id}", status_code=204)
+def delete_task(task_id: int):
+    if not database.delete_task(task_id):
+        raise HTTPException(status_code=404, detail="Task not found")

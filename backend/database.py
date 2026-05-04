@@ -9,6 +9,9 @@ def init_db():
         CREATE TABLE IF NOT EXISTS tasks (
             id          INTEGER PRIMARY KEY AUTOINCREMENT,
             title       TEXT    NOT NULL,
+            description TEXT,
+            deadline    TEXT,
+            priority    INTEGER DEFAULT 2,
             completed   INTEGER DEFAULT 0
         )
     """)
@@ -17,4 +20,46 @@ def init_db():
  
  
 init_db()  # Runs autoamticly when file is imported
+
+def get_all_tasks():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row          # Makes rows behave like dicts, e.g. row["title"]
+    rows = conn.execute("SELECT * FROM tasks").fetchall()
+    conn.close()
+    return [dict(row) for row in rows]      # Convert each row to a plain dict
+ 
+def create_task(data: dict):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.execute(
+        "INSERT INTO tasks (title, description, deadline, priority) VALUES (?, ?, ?, ?)",
+        (data["title"], data.get("description"), data.get("deadline"), data.get("priority", 2))
+    )
+    # Fetch the newly created task and return it
+    row = conn.execute("SELECT * FROM tasks WHERE id = ?", (cur.lastrowid,)).fetchone()
+    conn.commit()
+    conn.close()
+    return dict(row)
+ 
+ 
+def update_task(task_id: int, data: dict):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    # Build the SQL dynamically based on which fields were sent
+    fields = ", ".join(f"{key} = ?" for key in data)
+    values = list(data.values()) + [task_id]
+    conn.execute(f"UPDATE tasks SET {fields} WHERE id = ?", values)
+    conn.commit()
+    # Fetch and return the updated task
+    row = conn.execute("SELECT * FROM tasks WHERE id = ?", (task_id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
+ 
+ 
+def delete_task(task_id: int):
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
+    conn.commit()
+    conn.close()
+    return cur.rowcount > 0     # Returns True if a row was deleted, False if id didn't exist
  
