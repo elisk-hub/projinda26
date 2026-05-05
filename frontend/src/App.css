@@ -1,3 +1,17 @@
+/*
+  App.css - Styles for the Smart To-Do app
+
+  This file controls how the app looks:
+  - The blue header at the top
+  - The white container that holds all the content
+  - The task form where users add new tasks
+  
+  Colors used:
+  - Blue: #4a90d9 (header and buttons)
+  - Light grey: #f5f5f5 (background)
+  - White: #ffffff (form background)
+*/
+
 * {
   margin: 0;
   padding: 0;

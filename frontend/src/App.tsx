@@ -1,3 +1,19 @@
+/*
+  App.tsx - The main component of the Smart To-Do app
+
+  It does four things:
+  1. Fetches all tasks from the backend when the app loads
+  2. Handles adding a new task when the user submits the form
+  3. Handles marking a task as complete/incomplete
+  4. Handles deleting a task
+
+  It imports and uses these components:
+  - Header: the blue bar at the top
+  - TaskForm: the form where users add new tasks
+  - api.ts: functions that communicate with the backend
+*/
+
+
 import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import TaskForm from './components/TaskForm'

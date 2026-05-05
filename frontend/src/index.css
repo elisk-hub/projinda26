@@ -1,3 +1,11 @@
+/*
+  index.css - Global styles for the Smart To-Do app
+
+  This file contains global styles that apply to the entire page.
+  Note: Some styles here are leftover from Vite's default template
+  and are not actively used. These should be cleaned up later.
+*/
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
