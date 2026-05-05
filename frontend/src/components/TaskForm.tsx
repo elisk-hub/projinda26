@@ -1,4 +1,6 @@
 import { useState } from 'react'
+// TaskForm component - form for creating a new task
+// Receives an onSubmit function from App.tsx that handles saving the task
 
 // Defines what data the form will send back to the parent component
 interface TaskFormProps {
