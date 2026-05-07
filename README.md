@@ -30,4 +30,22 @@ An AI-based feature is used to generate a simple daily or weekly plan based on t
 - **Frontend:** React with TypeScript  
 - **Backend:** Python  
 - **Database:** SQLite  
-- **API:** LLM API for AI functionality  
+- **API:** LLM API for AI functionality
+
+## Installation
+
+### Backend
+```bash
+cd backend
+pip3 install -r requirements.txt
+python3 -m uvicorn main:app --reload
+```
+Körs på `http://localhost:8000`
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Körs på `http://localhost:5173`
