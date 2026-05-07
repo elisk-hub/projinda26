@@ -49,3 +49,14 @@ export const deleteTask = async (id: number): Promise<void> => {
     method: "DELETE",
   })
 }
+
+// Fetch tasks due today or overdue
+export const getTodayTasks = async (): Promise<Task[]> => {
+  const response = await fetch(`${API_URL}/tasks/today`)
+  return response.json()
+}
+
+export const getWeekTasks = async (): Promise<Task[]> => {
+  const response = await fetch(`${API_URL}/tasks/week`)
+  return response.json()
+}

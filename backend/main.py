@@ -46,3 +46,16 @@ def update_task(task_id: int, task: TaskUpdate):
 def delete_task(task_id: int):
     if not database.delete_task(task_id):
         raise HTTPException(status_code=404, detail="Task not found")
+    
+
+# GET /tasks/today
+# Returns tasks that are due today or overdue
+@app.get("/tasks/today")
+def get_today_tasks():
+    return database.get_today_tasks()
+
+# GET /tasks/week
+# Returns tasks due within the next 7 days
+@app.get("/tasks/week")
+def get_week_tasks():
+    return database.get_week_tasks()

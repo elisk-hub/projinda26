@@ -20,6 +20,11 @@ import TaskForm from './components/TaskForm'
 import { getTasks, createTask, deleteTask, updateTask } from './services/api'
 import type { Task } from './services/api'
 import './App.css'
+import TodaySection from './components/TodaySection'
+import WeekView from './components/WeekView'
+
+// Maps priority number to readable text
+const PRIORITY: Record<number, string> = { 1: 'High', 2: 'Medium', 3: 'Low' }
 
 function App() {
   // State that holds the list of tasks from backend
@@ -43,24 +48,26 @@ function App() {
       ...newTask,
       priority: priorityMap[newTask.priority],
     })
-    setTasks([...tasks, created])
+    setTasks(prev => [...prev, created])
   }
 
   // Delete a task
   const handleDelete = async (id: number) => {
     await deleteTask(id)
-    setTasks(tasks.filter(task => task.id !== id))
+    setTasks(prev => prev.filter(task => task.id !== id))
   }
 
   // Mark a task as complete/incomplete
   const handleComplete = async (task: Task) => {
     const updated = await updateTask(task.id, { completed: !task.completed })
-    setTasks(tasks.map(t => t.id === task.id ? updated : t))
+    setTasks(prev => prev.map(t => t.id === task.id ? updated : t))
   }
 
   return (
     <div className="app">
       <Header />
+      <TodaySection />
+      <WeekView />
       <main className="container">
         <h2>My tasks</h2>
         {/* Task form for adding new tasks */}
@@ -69,7 +76,7 @@ function App() {
         <ul className="task-list">
           {tasks.map(task => (
             <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-              <span>{task.title} - Priority: {task.priority}</span>
+              <span>{task.title} - Priority: {PRIORITY[task.priority]}</span>
               <div>
                 <button onClick={() => handleComplete(task)}>
                   {task.completed ? 'Undo' : 'Complete'}
