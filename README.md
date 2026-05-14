@@ -40,7 +40,7 @@ cd backend
 pip3 install -r requirements.txt
 python3 -m uvicorn main:app --reload
 ```
-Körs på `http://localhost:8000`
+Runs at `http://localhost:8000`
 
 ### Frontend
 ```bash
@@ -48,4 +48,4 @@ cd frontend
 npm install
 npm run dev
 ```
-Körs på `http://localhost:5173`
+Runs at `http://localhost:5173`
