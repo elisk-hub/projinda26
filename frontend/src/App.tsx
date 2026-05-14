@@ -103,6 +103,9 @@ function App() {
                       {PRIORITY_LABEL[task.priority]}
                     </span>
                   </div>
+                  {task.description && (
+                    <div className="task-meta">{task.description}</div>
+                  )}
                   {task.deadline && (
                     <div className="task-meta">Due: {task.deadline}</div>
                   )}
