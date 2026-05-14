@@ -1,2 +1,4 @@
 fastapi 
 uvicorn # webserver
+google-generativeai
+python-dotenv
