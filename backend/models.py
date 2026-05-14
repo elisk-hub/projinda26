@@ -4,7 +4,6 @@ from typing import Optional
  
 # This is the Task model — it defines what a task looks like in our app.
 # Pydantic automatically validates that the data has the right types.
- 
 class Task(BaseModel):
     id: int
     title: str

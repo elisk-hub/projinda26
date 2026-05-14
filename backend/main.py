@@ -15,7 +15,7 @@ app.add_middleware(
  
 @app.get("/")
 def root():
-    return {"status": "Backend igång!"}
+    return {"status": "Backend runs!"}
 
 # GET /tasks
 # Returns a list of all tasks from the database
@@ -49,13 +49,13 @@ def delete_task(task_id: int):
     
 
 # GET /tasks/today
-# Returns tasks that are due today or overdue
+# Returns tasks that are due today or overdue.
 @app.get("/tasks/today")
 def get_today_tasks():
     return database.get_today_tasks()
 
 # GET /tasks/week
-# Returns tasks due within the next 7 days
+# Returns tasks due within the next 7 days.
 @app.get("/tasks/week")
 def get_week_tasks():
     return database.get_week_tasks()
