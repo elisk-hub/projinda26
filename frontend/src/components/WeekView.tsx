@@ -32,17 +32,15 @@ function WeekView() {
       <ul className="week-list">
         {tasks.map(task => (
           <li key={task.id} className="week-item">
-            <div style={{ flex: 1 }}>
-              <div className="task-title">
-                {task.title}
-                <span className={`badge ${PRIORITY_CLASS[task.priority]}`}>
-                  {PRIORITY_LABEL[task.priority]}
-                </span>
-              </div>
-              {task.deadline && (
-                <div className="task-meta">Due: {task.deadline}</div>
-              )}
+            <div className="task-title">
+              {task.title}
+              <span className={`badge ${PRIORITY_CLASS[task.priority]}`}>
+                {PRIORITY_LABEL[task.priority]}
+              </span>
             </div>
+            {task.deadline && (
+              <div className="task-meta">Due: {task.deadline}</div>
+            )}
           </li>
         ))}
       </ul>

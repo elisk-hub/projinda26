@@ -206,10 +206,11 @@ body {
 
 .week-item {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  flex-direction: column;
   padding: 12px 0;
   border-bottom: 1px solid #F0EBE2;
+  align-items: center;
+  text-align: center;
 }
 
 .week-item:last-child {
@@ -303,11 +304,10 @@ body {
 
 .badge {
   display: inline-block;
-  padding: 3px 9px;
+  padding: 2px 8px;
   border-radius: 10px;
   font-size: 11px;
   font-weight: 500;
-  margin-left: 8px;
 }
 
 .badge.high   { background: #FADADD; color: #9B2335; }
@@ -383,4 +383,14 @@ body {
   font-size: 14px;
   color: #9A8F83;
   padding: 8px 0;
+}
+
+.task-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2C2820;
 }
