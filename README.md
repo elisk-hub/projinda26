@@ -38,6 +38,7 @@ An AI-based feature is used to generate a simple daily or weekly plan based on t
 ```bash
 cd backend
 pip3 install -r requirements.txt
+pip3 install google-generativeai python-dotenv
 python3 -m uvicorn main:app --reload
 ```
 Runs at `http://localhost:8000`
