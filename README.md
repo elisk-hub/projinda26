@@ -30,7 +30,7 @@ An AI-based feature is used to generate a simple daily or weekly plan based on t
 - **Frontend:** React with TypeScript  
 - **Backend:** Python  
 - **Database:** SQLite  
-- **API:** LLM API for AI functionality
+- **API:** LLM API GEMINI
 
 ## Installation
 
