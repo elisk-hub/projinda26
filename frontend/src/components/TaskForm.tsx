@@ -1,8 +1,5 @@
 import { useState } from 'react'
-// TaskForm component - form for creating a new task
-// Receives an onSubmit function from App.tsx that handles saving the task
 
-// Defines what data the form will send back to the parent component
 interface TaskFormProps {
   onSubmit: (task: {
     title: string
@@ -13,18 +10,15 @@ interface TaskFormProps {
 }
 
 function TaskForm({ onSubmit }: TaskFormProps) {
-  // State for each input field - stores what the user types
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [deadline, setDeadline] = useState('')
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium')
 
-  // Called when the user clicks "Add task"
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault() // Prevents page from reloading
-    if (!title) return // Don't submit if title is empty
-    onSubmit({ title, description, deadline, priority }) // Send data to parent
-    // Reset all fields after submit
+    e.preventDefault()
+    if (!title) return
+    onSubmit({ title, description, deadline, priority })
     setTitle('')
     setDescription('')
     setDeadline('')
@@ -32,46 +26,40 @@ function TaskForm({ onSubmit }: TaskFormProps) {
   }
 
   return (
-    // Form with inputs for each task field
-    <form className="task-form" onSubmit={handleSubmit}>
-      <h3>Add new task</h3>
-
-      {/* Title input - required */}
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
-
-      {/* Description input - optional */}
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-
-      {/* Deadline date picker */}
-      <input
-        type="date"
-        value={deadline}
-        onChange={(e) => setDeadline(e.target.value)}
-      />
-
-      {/* Priority dropdown - low, medium or high */}
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
-      >
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-
-      <button type="submit">Add task</button>
-    </form>
+    <div className="card">
+      <form className="task-form" onSubmit={handleSubmit}>
+        <h3>Add new task</h3>
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Description (optional)"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <div className="form-row">
+          <input
+            type="date"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+          />
+          <select
+            value={priority}
+            onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
+          >
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <button type="submit">Add task</button>
+      </form>
+    </div>
   )
 }
 

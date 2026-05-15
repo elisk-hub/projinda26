@@ -3,7 +3,7 @@ function Header() {
   return (
     // header element styled with the "header" class in App.css
     <header className="header">
-      <h1>Smart To-Do</h1>
+      <h1>TaskFlow</h1>
     </header>
   )
 }
