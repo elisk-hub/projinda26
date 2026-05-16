@@ -1,29 +1,59 @@
 import { useState, useEffect } from 'react'
-import { getAIPlanWithCalendar } from '../services/api'
+import { getAIPlan } from '../services/api'
 import type { Task } from '../services/api'
 
 interface AIPlanProps {
-  tasks: Task[]  // Receives tasks from App.tsx
+  tasks: Task[]
 }
 
 function AIPlan({ tasks }: AIPlanProps) {
   const [plan, setPlan] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
-  // Re-fetch plan every time tasks change, always using Google Calendar
   useEffect(() => {
     setLoading(true)
-    getAIPlanWithCalendar()
+    getAIPlan()
       .then(result => setPlan(result.plan))
       .finally(() => setLoading(false))
   }, [tasks])
 
+  const formatPlan = (text: string) => {
+  return text.split('\n').map((line, i) => {
+    const trimmed = line.trim()
+    if (!trimmed) return null
+
+    // Handle bullet points starting with *
+    if (trimmed.startsWith('*')) {
+      const content = trimmed.replace(/^\*\s*/, '')
+      const parts = content.split(/\*\*(.*?)\*\*/g)
+      return (
+        <p key={i} style={{ marginBottom: '4px', paddingLeft: '16px' }}>
+          • {parts.map((part, j) =>
+            j % 2 === 1 ? <strong key={j}>{part}</strong> : part
+          )}
+        </p>
+      )
+    }
+
+    // Regular lines
+    const parts = trimmed.split(/\*\*(.*?)\*\*/g)
+    return (
+      <p key={i} style={{ marginBottom: '8px', fontWeight: i === 0 ? '600' : '400' }}>
+        {parts.map((part, j) =>
+          j % 2 === 1 ? <strong key={j}>{part}</strong> : part
+        )}
+      </p>
+    )
+  })
+}
+
   return (
-    <section className="ai-section">
-      <h3>AI Plan</h3>
-      {loading && <p>Wait a second...</p>}
-      {plan && <p className="ai-plan">{plan}</p>}
-    </section>
+    <div className="card ai-section">
+      <div className="today-chip">✦ AI Plan</div>
+      <p className="section-label">Your daily plan</p>
+      {loading && <p className="no-tasks">Generating your plan...</p>}
+      {plan && <div className="ai-plan">{formatPlan(plan)}</div>}
+    </div>
   )
 }
 

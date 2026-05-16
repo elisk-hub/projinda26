@@ -17,6 +17,7 @@ import WeekView from './components/WeekView'
 import { getTasks, createTask, deleteTask, updateTask } from './services/api'
 import AIPlan from './components/AIPlan'
 import type { Task } from './services/api'
+import AIPlan from './components/AIPlan'
 import './App.css'
 
 const PRIORITY_LABEL: Record<number, string> = { 1: 'High', 2: 'Medium', 3: 'Low' }
@@ -90,17 +91,17 @@ function App() {
 
         {/* This week */}
         <WeekView />
-
+        
         {/* AI Plan */}
         <AIPlan tasks={tasks} />
-        
+  
         {/* All tasks */}
         <div className="card">
           <p className="section-label">My tasks</p>
           <ul className="task-list">
             {tasks.map(task => (
               <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                   <div className="task-title">
                     {task.title}
                     <span className={`badge ${PRIORITY_CLASS[task.priority]}`}>

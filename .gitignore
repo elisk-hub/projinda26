@@ -32,3 +32,5 @@ Thumbs.db
 .idea/
 *.suo
 *.swp
+backend/credentials.json
+backend/token.json
