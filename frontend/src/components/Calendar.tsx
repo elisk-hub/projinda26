@@ -1,21 +1,25 @@
+/*
+  Calendar.tsx - Shows AI-generated plan based on tasks and Google Calendar events
+  Fetches from GET /ai/plan/calendar
+*/
+
 import { useState, useEffect } from 'react'
-import { getAIPlan } from '../services/api'
-import type { Task } from '../services/api'
 
-interface AIPlanProps {
-  tasks: Task[]
-}
-
-function AIPlan({ tasks }: AIPlanProps) {
+function Calendar() {
   const [plan, setPlan] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
-    getAIPlan()
-      .then(result => setPlan(result.plan))
+    fetch('http://localhost:8000/ai/plan/calendar')
+      .then(res => {
+        if (!res.ok) throw new Error()
+        return res.json()
+      })
+      .then(data => setPlan(data.plan))
+      .catch(() => setError(true))
       .finally(() => setLoading(false))
-  }, [tasks])
+  }, [])
 
   const formatPlan = (text: string) => {
     return text.split('\n').map((line, i) => {
@@ -75,14 +79,16 @@ function AIPlan({ tasks }: AIPlanProps) {
     })
   }
 
+  if (error) return null
+
   return (
     <div className="card ai-section">
-      <div className="today-chip">✦ AI Plan</div>
-      <p className="section-label">Your daily plan</p>
-      {loading && <p className="no-tasks">Generating your plan...</p>}
+      <div className="today-chip">📅 Calendar Plan</div>
+      <p className="section-label">Plan based on your calendar</p>
+      {loading && <p className="no-tasks">Fetching your calendar...</p>}
       {plan && <div className="ai-plan">{formatPlan(plan)}</div>}
     </div>
   )
 }
 
-export default AIPlan
+export default Calendar
