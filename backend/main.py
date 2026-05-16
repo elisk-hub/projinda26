@@ -10,7 +10,7 @@ from calendar_service import get_calendar_events
 app = FastAPI() # creates app
 load_dotenv()  # Läser in .env-filen
  
-modelG = genai.GenerativeModel("gemini-2.5-flash")
+modelG = genai.GenerativeModel("gemini-3.1-flash-lite")
 
 # Allows my React-app talk to backend
 app.add_middleware(

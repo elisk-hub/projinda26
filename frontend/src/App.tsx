@@ -17,7 +17,6 @@ import WeekView from './components/WeekView'
 import { getTasks, createTask, deleteTask, updateTask } from './services/api'
 import AIPlan from './components/AIPlan'
 import type { Task } from './services/api'
-import AIPlan from './components/AIPlan'
 import './App.css'
 
 const PRIORITY_LABEL: Record<number, string> = { 1: 'High', 2: 'Medium', 3: 'Low' }
