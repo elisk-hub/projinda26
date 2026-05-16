@@ -15,6 +15,7 @@ import TaskForm from './components/TaskForm'
 import TodaySection from './components/TodaySection'
 import WeekView from './components/WeekView'
 import { getTasks, createTask, deleteTask, updateTask } from './services/api'
+import AIPlan from './components/AIPlan'
 import type { Task } from './services/api'
 import AIPlan from './components/AIPlan'
 import './App.css'
@@ -90,10 +91,10 @@ function App() {
 
         {/* This week */}
         <WeekView />
-
-       {/* AI Plan */}
-       <AIPlan tasks={tasks} />
-
+        
+        {/* AI Plan */}
+        <AIPlan tasks={tasks} />
+  
         {/* All tasks */}
         <div className="card">
           <p className="section-label">My tasks</p>

@@ -1,6 +1,10 @@
 # Database
 backend/tasks.db
 
+# Calendar
+backend/credentials.json
+backend/token.json
+
 # Environment variables - NEVER commit these!
 .env
 .env.local
