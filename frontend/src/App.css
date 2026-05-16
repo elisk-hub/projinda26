@@ -171,8 +171,9 @@ body {
 
 .today-item {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   padding: 12px 0;
   border-bottom: 1px solid #F0EBE2;
 }
@@ -240,6 +241,7 @@ body {
 
 .task-item {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: 12px;
   padding: 12px 0;
@@ -252,10 +254,14 @@ body {
 }
 
 .task-item .task-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
   font-size: 14px;
   font-weight: 500;
   color: #2C2820;
-  flex: 1;
+  margin-bottom: 2px;
 }
 
 .task-item.completed .task-title {
@@ -266,7 +272,7 @@ body {
 .task-item .task-meta {
   font-size: 12px;
   color: #9A8F83;
-  margin-top: 2px;
+  text-align: left;
 }
 
 .task-actions {
@@ -393,4 +399,11 @@ body {
   font-size: 14px;
   font-weight: 500;
   color: #2C2820;
+}
+
+.ai-plan {
+  font-size: 14px;
+  color: #2C2820;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }

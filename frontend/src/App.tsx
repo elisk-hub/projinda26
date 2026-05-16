@@ -100,7 +100,7 @@ function App() {
           <ul className="task-list">
             {tasks.map(task => (
               <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                   <div className="task-title">
                     {task.title}
                     <span className={`badge ${PRIORITY_CLASS[task.priority]}`}>
