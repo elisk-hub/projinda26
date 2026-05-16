@@ -60,3 +60,8 @@ export const getWeekTasks = async (): Promise<Task[]> => {
   const response = await fetch(`${API_URL}/tasks/week`)
   return response.json()
 }
+
+export const getAIPlan = async (): Promise<{ plan: string }> => {
+  const response = await fetch(`${API_URL}/ai/plan`)
+  return response.json()
+}
