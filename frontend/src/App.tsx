@@ -18,6 +18,7 @@ import { getTasks, createTask, deleteTask, updateTask } from './services/api'
 import AIPlan from './components/AIPlan'
 import type { Task } from './services/api'
 import './App.css'
+import Calendar from './components/Calendar'
 
 const PRIORITY_LABEL: Record<number, string> = { 1: 'High', 2: 'Medium', 3: 'Low' }
 const PRIORITY_CLASS: Record<number, string> = { 1: 'high', 2: 'medium', 3: 'low' }
@@ -93,6 +94,9 @@ function App() {
         
         {/* AI Plan */}
         <AIPlan tasks={tasks} />
+
+        {/* Calendar AI Plan */}
+        <Calendar />
   
         {/* All tasks */}
         <div className="card">
