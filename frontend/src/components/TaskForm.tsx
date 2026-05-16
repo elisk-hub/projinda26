@@ -14,10 +14,34 @@ function TaskForm({ onSubmit }: TaskFormProps) {
   const [description, setDescription] = useState('')
   const [deadline, setDeadline] = useState('')
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium')
+  const [error, setError] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!title) return
+    setError('')
+
+    // Validation
+    if (!title.trim()) {
+      setError('Please enter a title.')
+      return
+    }
+
+    if (title.length > 100) {
+      setError('Title must be less than 100 characters.')
+      return
+    }
+
+    if (!deadline) {
+      setError('Please select a deadline.')
+      return
+    }
+
+    const today = new Date().toISOString().split('T')[0]
+    if (deadline < today) {
+      setError('Deadline cannot be in the past.')
+      return
+    }
+
     onSubmit({ title, description, deadline, priority })
     setTitle('')
     setDescription('')
@@ -29,19 +53,28 @@ function TaskForm({ onSubmit }: TaskFormProps) {
     <div className="card">
       <form className="task-form" onSubmit={handleSubmit}>
         <h3>Add new task</h3>
+
+        {error && (
+          <p style={{ color: '#9B2335', fontSize: '13px', background: '#FADADD', padding: '8px 12px', borderRadius: '8px' }}>
+            {error}
+          </p>
+        )}
+
         <input
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
+          maxLength={100}
         />
+
         <input
           type="text"
           placeholder="Description (optional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+
         <div className="form-row">
           <input
             type="date"
@@ -57,6 +90,7 @@ function TaskForm({ onSubmit }: TaskFormProps) {
             <option value="high">High</option>
           </select>
         </div>
+
         <button type="submit">Add task</button>
       </form>
     </div>
